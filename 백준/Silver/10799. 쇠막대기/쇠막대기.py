@@ -1,14 +1,16 @@
-p = input()
-stack = []
-l = 0
-for i in range(len(p)):
-    if p[i] == '(':
-        stack.append(p)
-    else:
-        if p[i-1] == '(':
-            stack.pop()
-            l += len(stack)
+def solution(s):
+    answer = 0
+    stack = []
+    for i in range(len(s)):
+        if s[i] == '(':
+            stack.append(s)
         else:
-            stack.pop()
-            l += 1
-print(l)
+            if s[i-1] == '(':
+                stack.pop()
+                answer += len(stack)
+            else:
+                stack.pop()
+                answer += 1
+    return answer
+s = str(input())
+print(solution(s))
