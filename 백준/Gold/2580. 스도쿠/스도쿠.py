@@ -1,14 +1,8 @@
 import sys
 
-sudoku = [list(map(int, sys.stdin.readline().split())) for _ in range(9)]
-
 def check(box, row, col, num):
     for i in range(9):
-        if box[row][i] == num:
-            return False
-            
-    for i in range(9):
-        if box[i][col] == num:
+        if box[row][i] == num or box[i][col] == num:
             return False
             
     # 3 * 3 
@@ -33,7 +27,11 @@ def solve(box):
                 return False
     return True
     
-solve(sudoku)
+def solution(sudoku):
+    answer = [[0] * 9 for _ in range(9)]
+    solve(sudoku)
+    return sudoku
     
-for row in sudoku:
+sudoku = [list(map(int, sys.stdin.readline().split())) for _ in range(9)]
+for row in solution(sudoku):
     print(*row)
